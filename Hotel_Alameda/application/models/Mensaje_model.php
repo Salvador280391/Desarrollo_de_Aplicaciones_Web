@@ -1,5 +1,9 @@
 <?php
-
+/**
+    Salvador Toral Naranjo
+    Jueves 18 de julio del 2019
+    Se creo el modelo "Habitacion_model"
+**/
 class Mensaje_model extends CI_Model{
 
     private $_idMensaje;
