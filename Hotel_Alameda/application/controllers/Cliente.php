@@ -18,7 +18,7 @@ class Cliente extends CI_Controller
               $crud->required_fields('nombreCl','apellidoCl','telefonoCl');
               $crud->display_as('nombreCl','Nombre');
               $crud->display_as('apellidoCl','Apellidos');
-              $crud->display_as('telefonoCl','Telefono');
+              $crud->display_as('telefonoCl','Teléfono');
               $crud->display_as('correoCl','Correo');
 
               //$crud

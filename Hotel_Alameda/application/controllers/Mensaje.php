@@ -18,9 +18,6 @@ class Mensaje extends CI_Controller
               $crud->required_fields('mensaje','fechaM');
               $crud->display_as('fechaM','fecha');
 
-              $crud->set_relation("Usuario_idUsuario","Usuario","nombreU");
-              $crud->display_as("Usuario_idUsuario","Usuario");
-
               $crud->set_relation("Cliente_idCliente","Cliente","nombreCl");
               $crud->display_as("Cliente_idCliente","Cliente");
 

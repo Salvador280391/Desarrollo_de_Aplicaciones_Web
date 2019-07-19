@@ -24,12 +24,15 @@ DROP TABLE IF EXISTS `Cliente`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Cliente` (
   `idCliente` int(11) NOT NULL AUTO_INCREMENT,
-  `nombreCl` varchar(50) DEFAULT NULL,
+  `nombreCl` varchar(70) DEFAULT NULL,
   `apellidoCl` varchar(70) DEFAULT NULL,
-  `telefonoCl` varchar(15) DEFAULT NULL,
-  `correoCl` varchar(70) DEFAULT NULL,
-  PRIMARY KEY (`idCliente`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  `telefonoCl` varchar(30) DEFAULT NULL,
+  `correoCl` varchar(100) DEFAULT NULL,
+  `Usuario_idUsuario` int(11) DEFAULT NULL,
+  PRIMARY KEY (`idCliente`),
+  KEY `Usuario_idUsuario` (`Usuario_idUsuario`),
+  CONSTRAINT `Cliente_ibfk_1` FOREIGN KEY (`Usuario_idUsuario`) REFERENCES `Usuario` (`idUsuario`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +41,7 @@ CREATE TABLE `Cliente` (
 
 LOCK TABLES `Cliente` WRITE;
 /*!40000 ALTER TABLE `Cliente` DISABLE KEYS */;
-INSERT INTO `Cliente` VALUES (1,'Julio','Solerno rojas','4471000000','solerno@gmail.com');
+INSERT INTO `Cliente` VALUES (1,'saul','lopez','7412589630','solerno@gmail.com',NULL),(2,'victoria','alcantara','4474578547','victoria@gmail.com',NULL),(3,'Angel','Toral','4785632101','Angel@gmail.com',NULL),(4,'Salvador','Toral','478965632110','Salvador@gmail.com',NULL),(5,'salomon','perdomo','3456789074','salomon@gmail.com',NULL);
 /*!40000 ALTER TABLE `Cliente` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -54,14 +57,11 @@ CREATE TABLE `Comentario` (
   `comentario` varchar(250) DEFAULT NULL,
   `fechaC` date DEFAULT NULL,
   `statusC` tinyint(1) DEFAULT NULL,
-  `Usuario_idUsuario` int(11) DEFAULT NULL,
   `Cliente_idCliente` int(11) DEFAULT NULL,
   PRIMARY KEY (`idComentario`),
-  KEY `Usuario_idUsuario` (`Usuario_idUsuario`),
   KEY `Cliente_idCliente` (`Cliente_idCliente`),
-  CONSTRAINT `Comentario_ibfk_1` FOREIGN KEY (`Usuario_idUsuario`) REFERENCES `Usuario` (`idUsuario`),
-  CONSTRAINT `Comentario_ibfk_2` FOREIGN KEY (`Cliente_idCliente`) REFERENCES `Cliente` (`idCliente`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  CONSTRAINT `Comentario_ibfk_1` FOREIGN KEY (`Cliente_idCliente`) REFERENCES `Cliente` (`idCliente`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -70,36 +70,37 @@ CREATE TABLE `Comentario` (
 
 LOCK TABLES `Comentario` WRITE;
 /*!40000 ALTER TABLE `Comentario` DISABLE KEYS */;
-INSERT INTO `Comentario` VALUES (1,'Muy buen servicio','2019-06-20',0,NULL,1);
+INSERT INTO `Comentario` VALUES (1,' d','2019-07-17',1,1),(2,' Hola amigo','2019-07-18',0,5);
 /*!40000 ALTER TABLE `Comentario` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `DetalleReserva`
+-- Table structure for table `DetalleReservacion`
 --
 
-DROP TABLE IF EXISTS `DetalleReserva`;
+DROP TABLE IF EXISTS `DetalleReservacion`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `DetalleReserva` (
-  `idDetalleReserva` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `DetalleReservacion` (
+  `idDetalleReservacion` int(11) NOT NULL AUTO_INCREMENT,
   `Reservacion_idReservacion` int(11) DEFAULT NULL,
-  `Habitacion_numHabitacion` int(11) DEFAULT NULL,
-  PRIMARY KEY (`idDetalleReserva`),
+  `Habitacion_idHabitacion` int(11) DEFAULT NULL,
+  `totalR` double DEFAULT NULL,
+  PRIMARY KEY (`idDetalleReservacion`),
   KEY `Reservacion_idReservacion` (`Reservacion_idReservacion`),
-  KEY `Habitacion_numHabitacion` (`Habitacion_numHabitacion`),
-  CONSTRAINT `DetalleReserva_ibfk_1` FOREIGN KEY (`Reservacion_idReservacion`) REFERENCES `Reservacion` (`idReservacion`),
-  CONSTRAINT `DetalleReserva_ibfk_2` FOREIGN KEY (`Habitacion_numHabitacion`) REFERENCES `Habitacion` (`numHabitacion`)
+  KEY `Habitacion_idHabitacion` (`Habitacion_idHabitacion`),
+  CONSTRAINT `DetalleReservacion_ibfk_1` FOREIGN KEY (`Reservacion_idReservacion`) REFERENCES `Reservacion` (`idReservacion`),
+  CONSTRAINT `DetalleReservacion_ibfk_2` FOREIGN KEY (`Habitacion_idHabitacion`) REFERENCES `Habitacion` (`numHabitacion`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `DetalleReserva`
+-- Dumping data for table `DetalleReservacion`
 --
 
-LOCK TABLES `DetalleReserva` WRITE;
-/*!40000 ALTER TABLE `DetalleReserva` DISABLE KEYS */;
-/*!40000 ALTER TABLE `DetalleReserva` ENABLE KEYS */;
+LOCK TABLES `DetalleReservacion` WRITE;
+/*!40000 ALTER TABLE `DetalleReservacion` DISABLE KEYS */;
+/*!40000 ALTER TABLE `DetalleReservacion` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -110,14 +111,14 @@ DROP TABLE IF EXISTS `Habitacion`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Habitacion` (
-  `numHabitacion` int(11) NOT NULL,
-  `descripcion` varchar(250) DEFAULT NULL,
+  `numHabitacion` int(11) NOT NULL AUTO_INCREMENT,
+  `descripcionH` varchar(250) DEFAULT NULL,
   `cantPersonas` int(11) DEFAULT NULL,
   `precio` double DEFAULT NULL,
-  `imagenH` blob,
-  `status` tinyint(1) DEFAULT NULL,
+  `imagenH` varchar(250) DEFAULT NULL,
+  `statusH` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`numHabitacion`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -126,7 +127,7 @@ CREATE TABLE `Habitacion` (
 
 LOCK TABLES `Habitacion` WRITE;
 /*!40000 ALTER TABLE `Habitacion` DISABLE KEYS */;
-INSERT INTO `Habitacion` VALUES (1,'Habitacion de 1 cama matrimonial',2,200,_binary 'dfd',1);
+INSERT INTO `Habitacion` VALUES (1,'1 CAMA MATRIMONIAL ',2,220,'ae825-habitacioni1.jpg',0),(2,'2 CAMAS MATRIMONIALES ',2,449,'0ea95-habitaciond2.jpg',1);
 /*!40000 ALTER TABLE `Habitacion` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -141,15 +142,12 @@ CREATE TABLE `Mensaje` (
   `idMensaje` int(11) NOT NULL AUTO_INCREMENT,
   `mensaje` varchar(250) DEFAULT NULL,
   `fechaM` date DEFAULT NULL,
-  `respuesta` varchar(250) DEFAULT NULL,
-  `Usuario_idUsuario` int(11) DEFAULT NULL,
+  `respuestaM` varchar(250) DEFAULT NULL,
   `Cliente_idCliente` int(11) DEFAULT NULL,
   PRIMARY KEY (`idMensaje`),
-  KEY `Usuario_idUsuario` (`Usuario_idUsuario`),
   KEY `Cliente_idCliente` (`Cliente_idCliente`),
-  CONSTRAINT `Mensaje_ibfk_1` FOREIGN KEY (`Usuario_idUsuario`) REFERENCES `Usuario` (`idUsuario`),
-  CONSTRAINT `Mensaje_ibfk_2` FOREIGN KEY (`Cliente_idCliente`) REFERENCES `Cliente` (`idCliente`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  CONSTRAINT `Mensaje_ibfk_1` FOREIGN KEY (`Cliente_idCliente`) REFERENCES `Cliente` (`idCliente`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -158,6 +156,7 @@ CREATE TABLE `Mensaje` (
 
 LOCK TABLES `Mensaje` WRITE;
 /*!40000 ALTER TABLE `Mensaje` DISABLE KEYS */;
+INSERT INTO `Mensaje` VALUES (1,'hola ','2019-07-18','Hola victoria',2),(2,'Hola heeermanitooo ','2019-07-18','Hola Angel',3),(3,'Hola Clientw ','2019-07-18','Hola Salomon',5);
 /*!40000 ALTER TABLE `Mensaje` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -170,14 +169,14 @@ DROP TABLE IF EXISTS `Noticia`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Noticia` (
   `idNoticia` int(11) NOT NULL AUTO_INCREMENT,
-  `titulo` varchar(50) DEFAULT NULL,
+  `titulo` varchar(70) DEFAULT NULL,
   `noticia` varchar(250) DEFAULT NULL,
-  `imagenN` blob,
+  `imagenN` varchar(250) DEFAULT NULL,
   `Usuario_idUsuario` int(11) DEFAULT NULL,
   PRIMARY KEY (`idNoticia`),
   KEY `Usuario_idUsuario` (`Usuario_idUsuario`),
   CONSTRAINT `Noticia_ibfk_1` FOREIGN KEY (`Usuario_idUsuario`) REFERENCES `Usuario` (`idUsuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -186,7 +185,32 @@ CREATE TABLE `Noticia` (
 
 LOCK TABLES `Noticia` WRITE;
 /*!40000 ALTER TABLE `Noticia` DISABLE KEYS */;
+INSERT INTO `Noticia` VALUES (1,'RENTA DE ESPACIO PARA CONFERENCIAS',' ¿Buscas un lugar donde impartir cursos de belleza, manualidades, faciales, conferencias , platicas, etc.?  HOTEL ALAMEDA MARAVATIO te ofrece un espacio con un ambiente cómodo y agradable para tus clientes.  Capacidad de 30 a 40 personas. Medidas ...','1f657-foto.jpg',NULL),(3,'Tu Hotel Ideal','Esta a tan solo 200 metros ( 3 min ) del Centro de Maravatio .  ¡ Que esperas para visitarnos !','d6f70-map.jpg',NULL);
 /*!40000 ALTER TABLE `Noticia` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `Privilegio`
+--
+
+DROP TABLE IF EXISTS `Privilegio`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Privilegio` (
+  `idPrivilegio` int(11) NOT NULL AUTO_INCREMENT,
+  `nombreP` varchar(50) DEFAULT NULL,
+  `descripcionP` varchar(250) DEFAULT NULL,
+  PRIMARY KEY (`idPrivilegio`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Privilegio`
+--
+
+LOCK TABLES `Privilegio` WRITE;
+/*!40000 ALTER TABLE `Privilegio` DISABLE KEYS */;
+/*!40000 ALTER TABLE `Privilegio` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -198,17 +222,13 @@ DROP TABLE IF EXISTS `Reservacion`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Reservacion` (
   `idReservacion` int(11) NOT NULL AUTO_INCREMENT,
-  `pago` double DEFAULT NULL,
-  `fechaEntr` date DEFAULT NULL,
-  `fechaSal` date DEFAULT NULL,
-  `Usuario_idUsuario` int(11) DEFAULT NULL,
+  `fechaLlegada` date DEFAULT NULL,
+  `fechaSalida` date DEFAULT NULL,
   `Cliente_idCliente` int(11) DEFAULT NULL,
   PRIMARY KEY (`idReservacion`),
-  KEY `Usuario_idUsuario` (`Usuario_idUsuario`),
   KEY `Cliente_idCliente` (`Cliente_idCliente`),
-  CONSTRAINT `Reservacion_ibfk_1` FOREIGN KEY (`Usuario_idUsuario`) REFERENCES `Usuario` (`idUsuario`),
-  CONSTRAINT `Reservacion_ibfk_2` FOREIGN KEY (`Cliente_idCliente`) REFERENCES `Cliente` (`idCliente`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  CONSTRAINT `Reservacion_ibfk_1` FOREIGN KEY (`Cliente_idCliente`) REFERENCES `Cliente` (`idCliente`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -217,7 +237,6 @@ CREATE TABLE `Reservacion` (
 
 LOCK TABLES `Reservacion` WRITE;
 /*!40000 ALTER TABLE `Reservacion` DISABLE KEYS */;
-INSERT INTO `Reservacion` VALUES (1,200,'2019-06-08','2019-06-10',NULL,1);
 /*!40000 ALTER TABLE `Reservacion` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -230,12 +249,16 @@ DROP TABLE IF EXISTS `Usuario`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Usuario` (
   `idUsuario` int(11) NOT NULL AUTO_INCREMENT,
-  `nombreU` varchar(50) DEFAULT NULL,
+  `nombreU` varchar(70) DEFAULT NULL,
   `apellidoU` varchar(70) DEFAULT NULL,
-  `telefonoU` varchar(15) DEFAULT NULL,
-  `correoU` varchar(70) DEFAULT NULL,
-  `passwordU` varchar(30) DEFAULT NULL,
-  PRIMARY KEY (`idUsuario`)
+  `telefonoU` varchar(30) DEFAULT NULL,
+  `correoU` varchar(100) DEFAULT NULL,
+  `fotoU` varchar(250) DEFAULT NULL,
+  `password` blob,
+  `Privilegio_idPrivilegio` int(11) DEFAULT NULL,
+  PRIMARY KEY (`idUsuario`),
+  KEY `Privilegio_idPrivilegio` (`Privilegio_idPrivilegio`),
+  CONSTRAINT `Usuario_ibfk_1` FOREIGN KEY (`Privilegio_idPrivilegio`) REFERENCES `Privilegio` (`idPrivilegio`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -257,4 +280,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-06-20 18:35:39
+-- Dump completed on 2019-07-18 21:25:04

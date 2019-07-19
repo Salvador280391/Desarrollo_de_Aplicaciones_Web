@@ -16,7 +16,8 @@ class Noticia extends CI_Controller
               $crud->set_subject('Noticia');
               $crud->columns('titulo','noticia','imagenN','Usuario_idUsuario');
               $crud->required_fields('titulo','noticia');
-              $crud->display_as('imagenN','Fotos');
+              $crud->display_as('imagenN','Foto');
+              $crud->set_field_upload('imagenN','assets/uploads/files',"jpg|png|jpeg");
 
               $crud->set_relation("Usuario_idUsuario","Usuario","nombreU");
               $crud->display_as("Usuario_idUsuario","Usuario");

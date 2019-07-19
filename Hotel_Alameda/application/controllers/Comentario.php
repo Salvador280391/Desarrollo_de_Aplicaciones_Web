@@ -17,9 +17,7 @@ class Comentario extends CI_Controller
               $crud->columns('comentario','fechaC','statusC','Cliente_idCliente');
               $crud->required_fields('comentario','fechaC','statusC');
               $crud->display_as('fechaC','fecha');
-
-              $crud->set_relation("Usuario_idUsuario","Usuario","nombreU");
-              $crud->display_as("Usuario_idUsuario","Usuario");
+              $crud->display_as('statusC','Publicado');
 
               $crud->set_relation("Cliente_idCliente","Cliente","nombreCl");
               $crud->display_as("Cliente_idCliente","Cliente");
