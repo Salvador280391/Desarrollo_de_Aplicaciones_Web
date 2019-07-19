@@ -14,10 +14,13 @@ class Reservacion extends CI_Controller
               $crud->set_theme('bootstrap-v4');
               $crud->set_table('Reservacion');
               $crud->set_subject('Reservación');
-              $crud->columns('fechaLlegada','fechaSalida','Cliente_idCliente');
-              $crud->required_fields('fechaLlegada','fechaSalida');
-              $crud->display_as('fechaLlegada','Fecha de llegada');
-              $crud->display_as('fechaSalida','Fecha de salida');
+              $crud->columns('pago','fechaEntr','fechaSal','Cliente_idCliente');
+              $crud->required_fields('pago','fechaEntr','fechaSal');
+              $crud->display_as('fechaEntr','fecha de Entrada');
+              $crud->display_as('fechaSal','fecha de Salida');
+
+              $crud->set_relation("Usuario_idUsuario","Usuario","nombreU");
+              $crud->display_as("Usuario_idUsuario","Usuario");
 
               $crud->set_relation("Cliente_idCliente","Cliente","nombreCl");
               $crud->display_as("Cliente_idCliente","Cliente");

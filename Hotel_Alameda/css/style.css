@@ -11,25 +11,6 @@ body {
   font-family: 'Open Sans', sans-serif;
   }
 /*--- slider-css --*/
-.img-habit{
-	width: 300px;
-	height: 200px;
-	object-fit: cover;
-}
-
-.conte{
-	border-bottom: 6px solid rgb(247, 191, 126);
-  	background-color: lightgrey;
-}
-.margen{
-	margin: 20px;	
-}
-.maleta{
-	width: 40px;
-	height: 30px;
-	object-fit: cover;
-}
-
 .slider{
 	position: relative;
 }
@@ -191,11 +172,10 @@ ul.callbacks_tabs.callbacks1_tabs {
 }
 .header {
 	position: absolute;
-	top: 0em;
+	top: 0;
 	z-index: 9;
-	width: 100%;
-	left: 0em;
-	right: 0em;
+	width: 80%;
+	left: 12em;
 }
 .logo{
 	float:left;
@@ -485,14 +465,14 @@ i.ca {
 	vertical-align: middle;
 }
 .vero{
-	background: rgb(153, 153, 152);
+	background:url(../images/midbanner.jpg) no-repeat ;
 	background-size: cover;
 	-webkit-background-size:cover; 
 	-moz-background-size:cover;
 	-o-background-size:cover;
 	-ms-background-size:cover;
-	min-height:400px;	
-	text-align:justify;
+	min-height:600px;	
+	text-align:center;
 }
 .vero p {
 	font-size: 1.2em;

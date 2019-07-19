@@ -12,12 +12,14 @@ class Admin extends CI_Controller
             $crud = new grocery_CRUD();
 
             $crud->set_theme('bootstrap-v4');
-            $crud->set_table('Reservacion');
-            $crud->set_subject('Reservación');
-            $crud->columns('fechaLlegada','fechaSalida','Cliente_idCliente');
-            $crud->required_fields('fechaLlegada','fechaSalida');
-            $crud->display_as('fechaLlegada','Fecha de llegada');
-            $crud->display_as('fechaSalida','Fecha de salida');
+            $crud->set_table('Comentario');
+            $crud->set_subject('Comentario');
+            $crud->columns('comentario','fechaC','statusC','Cliente_idCliente');
+            $crud->required_fields('comentario','fechaC','statusC');
+            $crud->display_as('calle','Direccion');
+            
+            $crud->set_relation("Usuario_idUsuario","Usuario","nombreU");
+            $crud->display_as("Usuario_idUsuario","Usuario");
 
             $crud->set_relation("Cliente_idCliente","Cliente","nombreCl");
             $crud->display_as("Cliente_idCliente","Cliente");

@@ -1,11 +1,3 @@
-<!--
-	Salvador Toral Naranjo 
-	lunes 08 de julio del 2019
-----Se agregarón 2 imagenes más a la area del carrusel---
-----El área de noticias se modifico ahora las noticias se mostraran de manera dinamica, obteniendo 
-	la informacion que se muestra directamente de la base de datos---
- -->
-
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -45,7 +37,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<li><a href="<?=base_url()?>index.php/HotelAlameda/nosotros" data-hover="NOSOTROS">NOSOTROS</a></li>
 								<li><a href="<?=base_url()?>index.php/HotelAlameda/comentarios" data-hover="COMENTARIOS">COMENTARIOS</a></li>
 								<li><a href="<?=base_url()?>index.php/HotelAlameda/contacto" data-hover="CONTACTO">CONTACTO</a></li>
-								<li><a href="<?=base_url()?>index.php/HotelAlameda/reservacion"><img src="<?=base_url()?>images/maleta.png" title="RESERVACIONES" class="maleta" /></a></li>
 									<div class="clearfix"> </div>
 							</ul>
 				</div>
@@ -75,12 +66,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	        <li>
 	          <img src="<?=base_url()?>images/banner03.jpg" class="img-responsive" alt="">
 	        </li>
-			<li>
-	          <img src="<?=base_url()?>images/banner04.jpg" class="img-responsive" alt="">
-	        </li>
-			<li>
-	          <img src="<?=base_url()?>images/banner05.jpg" class="img-responsive" alt="">
-	        </li>
 	      </ul>
 	  </div>
 	  
@@ -93,12 +78,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<img src="<?=base_url()?>images/right.jpg" class="img-responsive" alt="" />
 				<div class="welcome-lefttop">	
 						<h5>Hotel Alameda</h5>
-						<li><span>01.</span>Hotel familiar en el centro de Maravatío </li>
+						<li><span>01.</span>Local familiar en el centro de Maravatío </li>
 						<li><span>02.</span>Limpieza y calidad al mejor precio! </li>
 						<li><span>03.</span>No se pierdan nuestras promociones! </li>
 						<li><span>04.</span>ACEPTAMOS TARJETAS DE CRÉDITO! </li>
 						<div class="button">
-							<a href="<?=base_url()?>index.php/HotelAlameda/habitaciones" class="btn  btn-1c btn1 btn-1d">Habitaciones</a>	
+							<a href="<?=base_url()?>habitaciones.html" class="btn  btn-1c btn1 btn-1d">Habitaciones</a>	
 						</div>
 				</div>
 			</div>
@@ -111,30 +96,100 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		
 	</div>
 <!-- welcome -->
-
+			
 <!-- midban-->
 	<div class="vero">
 			<div class="container">
-					<section class="slider">	
+					<section class="slider">
 						<div class="flexslider">
 							<ul class="slides">
-							<?php foreach ($noticia as $n):?>
-				<input type="hidden" name="idNoticia" value="<?=$n->idNoticia;?>">	
 								<li>
 									<div class="vero-top">
-										<h2><font size=20 color="white"><?=$n->titulo;?></font><br></h2>
-										<div class="col-md-6 vero-1">
-											<p><?=$n->noticia;?></p>
+										<div class="col-md-4 vero-1">
+											<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+											<label> </label>
+											<h6>At vero eos et accusamus</h6>
+											<div class="button-1">
+												<a class="read-more" href="#">Ver maś</a>
+											</div>
 										</div>
-
-										<div class="col-md-6 vero-2">
-										<img src="<?=base_url()?>assets/uploads/files/<?=$n->imagenN;?>" class="img-responsive1" alt="">
+										<div class="col-md-4 vero-2">
+											<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+											<label> </label>
+											<h6>At vero eos et accusamus</h6>
+											<div class="button-1">
+												<a class="read-more" href="#">Ver maś</a>
+											</div>
 										</div>
-										<div class="clearfix"> </div>
-										<div class="button-1">
-												<a class="read-more" href="#">Leer maś</a>
+										<div class="col-md-4 vero-3">
+											<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+											<label> </label>
+											<h6>At vero eos et accusamus</h6>
+											<div class="button-1">
+												<a class="read-more" href="#">Ver maś</a>
+											</div>
 										</div>
-								<?php endforeach;?>
+											<div class="clearfix"> </div>
+									</div>
+								</li>
+								<li>
+									<div class="vero-top">
+										<div class="col-md-4 vero-1">
+											<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+											<label> </label>
+											<h6>At vero eos et accusamus</h6>
+											<div class="button-1">
+												<a class="read-more" href="#">Ver maś</a>
+											</div>
+										</div>
+										<div class="col-md-4 vero-2">
+											<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+											<label> </label>
+											<h6>At vero eos et accusamus</h6>
+											<div class="button-1">
+												<a class="read-more" href="#">Ver maś</a>
+											</div>
+										</div>
+										<div class="col-md-4 vero-3">
+											<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+											<label> </label>
+											<h6>At vero eos et accusamus</h6>
+											<div class="button-1">
+												<a class="read-more" href="#">Ver maś</a>
+											</div>
+										</div>
+											<div class="clearfix"> </div>
+									</div>
+								</li>
+								<li>	
+									<div class="vero-top">
+										<div class="col-md-4 vero-1">
+											<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+											<label> </label>
+											<h6>At vero eos et accusamus</h6>
+											<div class="button-1">
+												<a class="read-more" href="#">Ver maś</a>
+											</div>
+										</div>
+										<div class="col-md-4 vero-2">
+											<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+											<label> </label>
+											<h6>At vero eos et accusamus</h6>
+											<div class="button-1">
+												<a class="read-more" href="#">Ver maś</a>
+											</div>
+										</div>
+										<div class="col-md-4 vero-3">
+											<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+											<label> </label>
+											<h6>At vero eos et accusamus</h6>
+											<div class="button-1">
+												<a class="read-more" href="#">Ver maś</a>
+											</div>
+										</div>
+											<div class="clearfix"> </div>
+									</div>
+								</li>
 							</ul>
 						</div>
 					</section>

@@ -24,6 +24,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   </script>
 </head>
 <body>
+
 <div class="banner-1">
 <div class="container">
 		<div class="header">
@@ -38,7 +39,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<li><a href="<?=base_url()?>index.php/HotelAlameda/nosotros" data-hover="NOSOTROS">NOSOTROS</a></li>
 								<li><a href="<?=base_url()?>index.php/HotelAlameda/comentarios" data-hover="COMENTARIOS">COMENTARIOS</a></li>
 								<li><a href="<?=base_url()?>index.php/HotelAlameda/contacto" data-hover="CONTACTO">CONTACTO</a></li>
-								<li><a href="<?=base_url()?>index.php/HotelAlameda/reservacion"><img src="<?=base_url()?>images/maleta.png" title="RESERVACIONES" class="maleta" /></a></li>
+									<div class="clearfix"> </div>
 							</ul>
 				</div>
 						<div class="clearfix"> </div>
@@ -55,49 +56,49 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
   </div>
 <!-- header -->
-<div class="about">
-	<div class="container">
-		<div class="clearfix"> </div>
-		<div class="ourteam">
-			<h3>Habitaciones</h3>
-			<div class="section group">
-				<?php
-				// "$products" send from "shopping" controller,its stores all product which available in database.
-				foreach ($habitacion as $product) {
-					$id = $product['numHabitacion'];
-					$name = $product['descripcionH'];
-					$price = $product['precio'];
-					$img = $product['imagenH'];
-					$can = $product['cantPersonas'];
-				?>
-					<div class="col-md-3 grid_1_of_4 images_1_of_4">
-						<img src="<?php echo base_url() . 'assets/uploads/files/'.$img ?>"  class="img-habit">	
-						<h3>Habitación <?php echo $id; ?></h3>
-						<p><?php echo $name; ?><br>
-							<?php echo $can; ?> Personas<br>
-							Precio: $<?php echo $price; ?>.00<br>
-			
-							<?php
-							echo form_open('HotelAlameda/add');
-							echo form_hidden('id', $id);
-							echo form_hidden('name', $name);
-							echo form_hidden('price', $price);
-							echo form_hidden('img', $img);
-						
-								$btn = array(
-								'class' => 'fg-button teal',
-								'value' => 'Agregar reservación',
-								'name' => 'action'
-								);
-								echo form_submit($btn);
-							echo form_close();
-							?></p><br>
-						</div>
-				<?php } ?>
+<!-- about -->	
+		<div class="about">
+		<div class="container">
+								<div class="clearfix"> </div>
+								<div class="ourteam">
+									<h3>Habitaciones</h3>
+									<div class="section group">
+										<div class="col-md-3 grid_1_of_4 images_1_of_4">
+											 <img src="<?=base_url()?>images/t1.jpg"  class="img-responsive">
+											 <h3>Habitación 01 </h3>
+											 <p>1 CAMA MATRIMONIAL <br>
+												 2 PERSONAS <br>
+												  $319.00 noche <br>
+												  <a href="#">[...]</a></p>
+										</div>
+										<div class="col-md-3 grid_1_of_4 images_1_of_4">
+											 <img src="<?=base_url()?>images/t2.jpg"  class="img-responsive">
+											 <h3>Habitación 02 </h3>
+											 <p> HABITACIÓN DOBLE <br>
+												 2 CAMAS MATRIMONIALES <br>
+												 2 PERSONAS <br>
+												 $449.00 noche <br>
+												 <a href="#">[...]</a></p>
+										</div>
+										<div class="col-md-3 grid_1_of_4 images_1_of_4">
+											 <img src="<?=base_url()?>images/t3.jpg"  class="img-responsive">
+											 <h3>Habitación 03 </h3>
+											 <p> 1 CAMA MATRIMONIAL <br>
+												2 PERSONAS <br>
+												 $319.00 noche <br><a href="#">[...]</a></p>
+										</div>
+										<div class="col-md-3 grid_1_of_4 images_1_of_4">
+											 <img src="<?=base_url()?>images/t4.jpg"  class="img-responsive">
+											 <h3>Habitación 04 </h3>
+											 <p> 1 CAMA MATRIMONIAL <br>
+												2 PERSONAS <br>
+												 $319.00 noche <br><a href="#">[...]</a></p>
+										</div>
+									</div>
+								</div>
 			</div>
-		</div>
-    </div>
 </div>
+<!-- about -->	
 <!-- footer -->
 <div class="footer">
 		<div class="container">

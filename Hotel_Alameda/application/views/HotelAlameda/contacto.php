@@ -39,7 +39,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<li><a href="<?=base_url()?>index.php/HotelAlameda/nosotros" data-hover="NOSOTROS">NOSOTROS</a></li>
 								<li><a href="<?=base_url()?>index.php/HotelAlameda/comentarios" data-hover="COMENTARIOS">COMENTARIOS</a></li>
 								<li class="active"><a href="<?=base_url()?>index.php/HotelAlameda/contacto" data-hover="CONTACTO">CONTACTO</a></li>
-								<li><a href="<?=base_url()?>index.php/HotelAlameda/reservacion"><img src="<?=base_url()?>images/maleta.png" title="RESERVACIONES" class="maleta" /></a></li>	
 									<div class="clearfix"> </div>
 							</ul>
 				</div>
@@ -77,26 +76,26 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="col-md-8 col span_2_of_3">
 				  <div class="contact-form">
 				  	<h3>Contactanos</h3>
-					    <form method="post" action="<?=base_url();?>index.php/HotelAlameda/guardarM">
+					    <form method="post" action="contact-post.html">
 					    	<div>
 						    	<span><label>Nombre</label></span>
-						    	<span><input name="nombreCl" type="text" class="textbox" required></span>
+						    	<span><input name="userName" type="text" class="textbox"></span>
 							</div>
 							<div>
 									<span><label>Apellidos</label></span>
-									<span><input name="apellidoCl" type="text" class="textbox" required></span>
+									<span><input name="userName" type="text" class="textbox"></span>
 								</div>
 						    <div>
 						    	<span><label>Correo</label></span>
-						    	<span><input name="correoCl" type="text" class="textbox" required></span>
+						    	<span><input name="userEmail" type="text" class="textbox"></span>
 						    </div>
 						    <div>
 						     	<span><label>Teléfono</label></span>
-						    	<span><input name="telefonoCl" type="text" class="textbox" required></span>
+						    	<span><input name="userPhone" type="text" class="textbox"></span>
 						    </div>
 						    <div>
 						    	<span><label>Mensaje</label></span>
-						    	<span required><textarea name="mensaje" > </textarea></span>
+						    	<span><textarea name="userMsg"> </textarea></span>
 						    </div>
 						   <div>
 						   		<span><input type="submit" class="mybutton" value="Enviar"></span>
@@ -109,28 +108,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>				
 	 </div>
 <!-- contact -->
-<div class="about">
-	<div class="container">
-		<div class="clearfix"> </div>
-		<div class="ourteam">
-			<h3>Mensajes</h3>
-			<?php foreach ($mensaje as $m):?>
-      
-      <input type="hidden" name="idMensaje" value="<?=$m->idMensaje;?>"><br>
-        <div class="col-md-8 grid_1_of_4 images_1_of_4">
-			<div class="conte">
-				<div class="margen">
-			<h6>Enviado por: <?=$m->correoCl;?></h6>
-				  <h3><?=$m->mensaje;?></h3>
-				  <h6>Respuesta: <?=$m->respuestaM;?></h6>
-				</div>  
-			</div>
-        </div>
-        <?php endforeach;?><br>
-		</div>
-    </div>
-</div>
-
 <!-- footer -->
 <div class="footer">
 		<div class="container">
