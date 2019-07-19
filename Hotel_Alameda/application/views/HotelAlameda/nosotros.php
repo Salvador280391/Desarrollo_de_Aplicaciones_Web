@@ -38,6 +38,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<li class="active"><a href="<?=base_url()?>index.php/HotelAlameda/nosotros" data-hover="NOSOTROS">NOSOTROS</a></li>
 								<li><a href="<?=base_url()?>index.php/HotelAlameda/comentarios" data-hover="COMENTARIOS">COMENTARIOS</a></li>
 								<li><a href="<?=base_url()?>index.php/HotelAlameda/contacto" data-hover="CONTACTO">CONTACTO</a></li>
+								<li><a href="<?=base_url()?>index.php/HotelAlameda/reservacion"><img src="<?=base_url()?>images/maleta.png" title="RESERVACIONES" class="maleta" /></a></li>
 									<div class="clearfix"> </div>
 							</ul>
 				</div>
@@ -67,17 +68,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					de la atención a los visitantes, y manteniendo un compromiso de calidad.</h6>
 			</div>
 
-			<div>
+			</div>
+		<div class="col-md-6 welcome-right">
 				<h3>Visión</h3>
 				<h6>Ser el hotel de referencia en Maravatío, Michoacán por su estilo vanguardista 
 					y la calidad de su servicio.  al mismo tiempo ser reconocidos, por la comodidad 
 					de nuestras instalaciones, por la conveniencia de nuestra ubicación y por 
 					nuestros programas sustentables y de apoyo a la comunidad.</h6>
-			</div>
 
-			</div>
-		<div class="col-md-6 welcome-right">
-			<img src="<?=base_url()?>images/team.jpg" class="img-responsive" alt=""/>
 		</div>
 			<div class="clearfix"> </div>
 	
@@ -85,11 +83,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
 <div class="welcome-right">
-
-		<div class="col-md-12 welcome-right">
+<div class="col-md-2 welcome-right">
+</div>
+		<div class="col-md-8 welcome-right">
 			<h3>Valores</h3>
-		</div>
-			<div>
 				
 				<h6>Servicio: Cuando la calidad de nuestro servicio logra satisfacer y exceder lo 
 					que anticipan nuestros huéspedes estamos cumpliendo con el objetivo de hacerles 
@@ -121,6 +118,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						Respeto: Reconocemos y consideramos a las demás personas por su individualidad, 
 						apoyando la generación de vínculos, basados en la ética y el cuidado 
 						interpersonal.<br><br></h6>
+			</div>
+
+			<div class="col-md-2 welcome-right">
 			</div>
 
 			<div class="clearfix"> </div>
