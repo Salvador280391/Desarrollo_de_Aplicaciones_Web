@@ -1,3 +1,17 @@
+<?php
+
+/**
+ * @category   Controllers
+ * @package    Comentario.php
+ * @author     Salvador Toral Naranjo
+ * @version    1.0
+ * @link       git@github.com:Salvador280391/Desarrollo_de_Aplicaciones_Web.git
+ * Viernes 02 de Agosto del 2019
+ * 
+ * Se actualizo la cabecera de código
+ */
+
+?>
 <?php 
 
 class Comentario extends CI_Controller
@@ -14,18 +28,19 @@ class Comentario extends CI_Controller
               $crud->set_theme('bootstrap-v4');
               $crud->set_table('Comentario');
               $crud->set_subject('Comentario');
-              $crud->columns('comentario','fechaC','statusC','Cliente_idCliente');
+              $crud->columns('comentario','fechaC','Usuario_idUsuario');
               $crud->required_fields('comentario','fechaC','statusC');
               $crud->display_as('fechaC','fecha');
-              $crud->display_as('statusC','Publicado');
 
-              $crud->set_relation("Cliente_idCliente","Cliente","nombreCl");
-              $crud->display_as("Cliente_idCliente","Cliente");
+              $crud->set_relation("Usuario_idUsuario","Usuario","nombreU");
+              $crud->display_as("Usuario_idUsuario","Usuario");
 
 
               //$crud
               $output = $crud->render();
-              $this->load->view('comentario.php',(array)$output);
+              $this->load->view('Administrador/head.php');
+              $this->load->view('Administrador/comentario.php',(array)$output);
+              $this->load->view('Administrador/footer.php');
           }catch(Exception $ex){
             show_error($ex->getMessage().' ----- '.$ex->getTraceAsString());
         }

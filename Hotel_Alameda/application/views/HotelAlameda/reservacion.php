@@ -1,8 +1,33 @@
+<?php
+
+/**
+ * @category   Views
+ * @package    reservacion.php 
+ * @author     Salvador Toral Naranjo
+ * @version    1.0
+ * @link       git@github.com:Salvador280391/Desarrollo_de_Aplicaciones_Web.git
+ * Viernes 02 de Agosto del 2019
+ * 
+ * Se actualizo la cabecera de código
+ */
+
+?>
+<?php
+if ($this->session->userdata('login')==FALSE) {
+  redirect('Usuario/login');
+}else if($this->session->userdata('privilegio')==2) {
+  redirect('Admin');
+}else{?>
 <!DOCTYPE HTML>
 <html>
 <head>
 <link href="<?=base_url()?>css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
 <link href="<?=base_url()?>css/style.css" rel="stylesheet" type="text/css" media="all" />
+  <!-- Bootstrap core CSS -->
+  <link href="<?=base_url()?>vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="<?=base_url()?>css/simple-sidebar.css" rel="stylesheet">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Costamar Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
@@ -53,7 +78,9 @@ function clear_cart() {
 								<li><a href="<?=base_url()?>index.php/HotelAlameda/reservacion"><img src="<?=base_url()?>images/maleta.png" title="RESERVACIONES" class="maleta" /></a></li>
 							</ul>
 				</div>
+        
 						<div class="clearfix"> </div>
+
 					<!-- script-for-nav -->
 					<script>
 						$( "span.menu" ).click(function() {
@@ -63,20 +90,41 @@ function clear_cart() {
 						});
 					</script>
 				<!-- script-for-nav -->
+
 			</div>
 		</div>
   </div>
 <!-- header -->
+<div class="header">
+  <div class="head-1">
+        <div  class="col-md-6 welcome-left">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Usuario
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item"><?php echo $_SESSION["nombreU"]; ?></a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="<?=base_url();?>index.php/Usuario/exitCl">Cerrar Sesión</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+        </div>
+        </div>
+
+</div>
+
+<div class="collapse navbar-collapse" id="navbarSupportedContent">
 <div class="about">
 		<div class="container">
 			<div class="clearfix"> </div>
 					<div class="ourteam">
 						<h3>Reservaciones</h3>
-                                
-                        
-
                             <div id='content'>
-
+                  
                             <div id="text">
                                 <?php $cart_check = $this->cart->contents();
 
@@ -86,18 +134,18 @@ function clear_cart() {
                                 } ?>
                             </div>
 
-                            <table id="table" border="0" cellpadding="5px" cellspacing="1px">
+                            <table class="table">
                                 <?php
                                 // All values of cart store in "$cart".
                                 if ($cart = $this->cart->contents()): ?>
+                                <thead>
                                     <tr id= "main_heading">
-                                    <td>Habitación</td>
-                                    <td>Descripción</td>
-                                    <td>Precio</td>
-                                    <td>Cantidad</td>
-                                    <td>Existencia</td>
-                                    <td>Quitar Reservación</td>
+                                    <td class="warning">Habitación</td>
+                                    <td class="warning">Descripción</td>
+                                    <td class="warning">Precio</td>
+                                    <td class="warning">Quitar Reservación</td>
                                     </tr>
+                                    </thead>    
                                 <?php
                                     // Create form and send all values in "carrito/update_cart" function.
                                     echo form_open('HotelAlameda/update_cart');
@@ -115,25 +163,19 @@ function clear_cart() {
                                     echo form_hidden('cart[' . $item['id'] . '][price]', $item['price']);
                                     echo form_hidden('cart[' . $item['id'] . '][qty]', $item['qty']);
                                 ?>
+                                <tbody>
                                 <tr>
-                                <td>
-                                    <?php echo $i++; ?>
-                                </td>
-                                <td>
-                                    <?php echo $item['name']; ?>
-                                </td>
-                                <td>
-                                    $ <?php echo number_format($item['price'], 2); ?>
-                                </td>
-                                <td>
-                            <?php echo form_input('cart[' . $item['id'] . '][qty]', $item['qty'], 'maxlength="3" size="1" style="text-align: right"'); ?>
-                            </td>
-                            <?php $grand_total = $grand_total + $item['subtotal']; ?>
-                            <td>
-                            $ <?php echo number_format($item['subtotal'], 2) ?>
-                            </td>
-                            <td>
+                                
+                                <td><?php echo $i++; ?></td>
+                              
+                                
+                                <td><?php echo $item['name']; ?></td>
+                                
+                                <td>$ <?php echo number_format($item['price'], 2); ?></td>
 
+                                <?php $grand_total = $grand_total + $item['price']; ?>
+                                
+                            <td>
                             <?php
                             // cancle image.
                             $path = "<img src='".base_url()."images/quitar.png' width='25px' height='20px'>";
@@ -141,24 +183,22 @@ function clear_cart() {
                             </td>
                             <?php endforeach; ?>
                             </tr>
+                            </tbody>
+                            <tbody>
                             <tr>
                             <td><b>Order Total: $<?php
-
-                            //Grand Total.
                             echo number_format($grand_total, 2); ?></b></td>
 
                             <?php // "clear cart" button call javascript confirmation message ?>
-                            <td colspan="5" align="right"><input  class ='fg-button teal' type="button" value="Limpiar Reservaciones" onclick="clear_cart()">
-
-                            <?php //submit button. ?>
-                            <input class ='fg-button teal'  type="submit" value="Actualizar Reservaciones">
-                            <?php echo form_close(); ?>
+                            <td colspan="5" align="right"><input  class="btn btn-danger" type="button" value="Limpiar Reservaciones" onclick="clear_cart()">
 
                             <!-- "Place order button" on click send "billing" controller -->
-                            <input class ='fg-button teal' type="button" value="Imprimir Comprobante" onclick="window.location = 'HotelAlameda/billing_view'"></td>
+                            <input class="btn btn-info" name="btnDownload" type="submit" value="Imprimir Comprobante"></td>
                             </tr>
+                            </tbody>
                             <?php endif; ?>
                             </table>
+                
                             </div>
                             </div>
                 </div>
@@ -181,6 +221,19 @@ function clear_cart() {
 			<h3>Teléfono : 01 447 690 1152</h3>
 		</div>
 	</div>
+
+  <script src="<?=base_url()?>vendor/jquery/jquery.min.js"></script>
+  <script src="<?=base_url()?>vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Menu Toggle Script -->
+  <script>
+    $("#menu-toggle").click(function(e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
+    });
+  </script>
 <!-- footer -->
 </body>
 </html>
+
+<?php } ?>

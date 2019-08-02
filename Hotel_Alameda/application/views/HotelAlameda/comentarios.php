@@ -1,3 +1,17 @@
+<?php
+
+/**
+ * @category   Views
+ * @package    comentario.php 
+ * @author     Salvador Toral Naranjo
+ * @version    1.0
+ * @link       git@github.com:Salvador280391/Desarrollo_de_Aplicaciones_Web.git
+ * Viernes 02 de Agosto del 2019
+ * 
+ * Se actualizo la cabecera de código
+ */
+
+?>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -12,6 +26,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link rel="stylesheet" href="<?=base_url()?>css/flexslider.css" type="text/css" media="screen" />
 <script src="<?=base_url()?>js/jquery.min.js"></script>
 <script src="<?=base_url()?>js/responsiveslides.min.js"></script>
+<script src="<?=base_url()?>js/validacion.js"></script>
 <script>
     $(function () {
       $("#slider").responsiveSlides({
@@ -22,6 +37,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
       });
     });
   </script>
+
+<script>
+		function tratamiento(){
+			if (document.formularioC.comentario.length == 0){
+				alert("El campo comentario esta vacio")
+				return 0;
+			}
+
+			document.formularioC.submit();
+		}
+
+	</script>
+
 </head>
 <body>
 
@@ -57,6 +85,46 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
   </div>
 <!-- header -->
+<?php if ($this->session->userdata('login')==true) {?>
+<div class="header">
+  <div class="head-1">
+        <div  class="col-md-6 welcome-left">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Usuario
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item"><?php echo $_SESSION["nombreU"]; ?></a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="<?=base_url();?>index.php/Usuario/exitCl">Cerrar Sesión</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+        </div>
+        </div>
+<?php }else{ ?>
+	<div class="header">
+  	<div class="head-1">
+        <div  class="col-md-6 welcome-left">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Usuario
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="<?=base_url();?>index.php/Usuario/login">Iniciar Sesión</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+        </div>
+        </div>
+	<?php } ?>
+	</div>
 <!-- destination -->	
 <div class="contact">
 		<div class="container">
@@ -64,33 +132,28 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			
 
 						<div class="col-md-8 col span_2_of_3">
+						
 						  <div class="contact-form">
 							  <h3>Deja tu comentario</h3>
-								<form method="post" action="<?=base_url();?>index.php/HotelAlameda/guardarC">
+							<?php if ($this->session->userdata('login')==false) {?>
+								<div class="alert alert-info">
+  									<strong>Importante!</strong> Si deseas realizar enviar un comentario debes iniciar sesión.
+								</div>
+							  	<div>
+									<a href="<?=base_url();?>index.php/Usuario/login" class="btn btn-info">iniciar sesión</a>										   
+								</div>
+							<?php } else { ?>
+								<form name="formularioC" method="post" onclick=validarFormulario() action="<?=base_url();?>index.php/HotelAlameda/guardarC">
+								<input type="hidden" name="Usuario_idUsuario" value="<?php echo $_SESSION["idUsuario"]; ?>"><br>
 									<div>
 										<span><label>Comentario</label></span>
-										<span><textarea name="comentario"> </textarea></span>
+										<textarea name="comentario" id="comentario"> </textarea>
 										</div>
-
-									<div>
-										<span><label>Nombre</label></span>
-										<span><input name="nombreCl" type="text" class="textbox" required></span>
-									</div>
-									<div>
-											<span><label>Apellidos</label></span>
-											<span><input name="apellidoCl" type="text" class="textbox" required></span>
-										</div>
-									<div>
-										<span><label>Correo</label></span>
-										<span><input name="correoCl" type="text" class="textbox" required></span>
-									</div>
-									<div>
-										 <span><label>Teléfono</label></span>
-										<span><input name="telefonoCl" type="text" class="textbox" required></span>
-									</div>
 								   <div>
-										   <span><input type="submit" class="mybutton" value="Enviar"></span>
+										   <span><input name="enviar"  type="submit" class="mybutton" value="Enviar"></span>
 								  </div>
+								  <?php } ?>
+
 								</form>
 		
 							</div>
@@ -110,7 +173,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class="col-md-8 grid_1_of_4 images_1_of_4">
 			<div class="conte">
 				<div class="margen">
-			<h6><?=$c->correoCl;?></h6>
+			<h6><?=$c->correoU;?></h6>
                   <h3><?=$c->comentario;?></h3>
 				</div>  
 			</div>
@@ -136,5 +199,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 	</div>
 <!-- footer -->
+<script src="<?=base_url()?>vendor/jquery/jquery.min.js"></script>
+  <script src="<?=base_url()?>vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- Menu Toggle Script -->
+  <script>
+    $("#menu-toggle").click(function(e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
+    });
+  </script>
 </body>
 </html>

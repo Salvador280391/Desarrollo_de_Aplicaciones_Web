@@ -1,9 +1,18 @@
 <?php
+
 /**
-    Salvador Toral Naranjo
-    Lunes 08 de julio del 2019
-    Se creo el modelo "index_model"
-**/
+ * @category   Models
+ * @package    Index_model.php 
+ * @author     Salvador Toral Naranjo
+ * @version    1.0
+ * @link       git@github.com:Salvador280391/Desarrollo_de_Aplicaciones_Web.git
+ * Viernes 02 de Agosto del 2019
+ * 
+ * Se actualizo la cabecera de código
+ */
+
+?>
+<?php
 class Index_model extends CI_Model{
 
     ///Cometarios

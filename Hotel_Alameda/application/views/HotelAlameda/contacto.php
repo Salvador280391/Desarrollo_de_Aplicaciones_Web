@@ -1,3 +1,17 @@
+<?php
+
+/**
+ * @category   Views
+ * @package    contacto.php 
+ * @author     Salvador Toral Naranjo
+ * @version    1.0
+ * @link       git@github.com:Salvador280391/Desarrollo_de_Aplicaciones_Web.git
+ * Viernes 02 de Agosto del 2019
+ * 
+ * Se actualizo la cabecera de código
+ */
+
+?>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -22,10 +36,44 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
       });
     });
   </script>
+
+	<script type="text/javascript">
+		function tratamiento(){
+			if (document.formulario.nombreU.value.length == 0){
+				alert("El campo nombre esta vacio")
+				return 0;
+			}
+
+			if (document.formulario.apellidoU.value.length == 0){
+				alert("El campo apellidos esta vacio")
+				return 0;
+			}
+
+			if (document.formulario.correoU.value.length == 0){
+				alert("El campo correo esta vacio")
+				return 0;
+			}
+
+			if (document.formulario.telefonoU.value.length == 0){
+				alert("El campo telefono esta vacio")
+				return 0;
+			}
+
+			if (document.formulario.mensaje.value.length == 0){
+				alert("El campo mensaje esta vacio")
+				return 0;
+			}
+
+
+
+			document.formulario.submit();
+		}
+
+	</script>
 </head>
 <body>
 
-<div class="banner-1">
+<div class="banner-1" >
 <div class="container">
 		<div class="header">
 				<div class="logo">
@@ -57,10 +105,50 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
   </div>
 <!-- header -->
+<?php if ($this->session->userdata('login')==true) {?>
+<div class="header">
+  <div class="head-1">
+        <div  class="col-md-6 welcome-left">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Usuario
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item"><?php echo $_SESSION["nombreU"]; ?></a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="<?=base_url();?>index.php/Usuario/exitCl">Cerrar Sesión</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+        </div>
+        </div>
+<?php }else{ ?>
+	<div class="header">
+  	<div class="head-1">
+        <div  class="col-md-6 welcome-left">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Usuario
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="<?=base_url();?>index.php/Usuario/login">Iniciar Sesión</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+        </div>
+        </div>
+	<?php } ?>
+	</div>
 <!-- contact -->
 <div class="contact">
 <div class="container">
-<div class="section group">				
+<div class="section group">			
 				<div class="col-md-4 col span_1_of_3">
 				
       			<div class="company_address">
@@ -77,31 +165,25 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="col-md-8 col span_2_of_3">
 				  <div class="contact-form">
 				  	<h3>Contactanos</h3>
-					    <form method="post" action="<?=base_url();?>index.php/HotelAlameda/guardarM">
-					    	<div>
-						    	<span><label>Nombre</label></span>
-						    	<span><input name="nombreCl" type="text" class="textbox" required></span>
-							</div>
-							<div>
-									<span><label>Apellidos</label></span>
-									<span><input name="apellidoCl" type="text" class="textbox" required></span>
+					  <?php if ($this->session->userdata('login')==false) {?>
+								<div class="alert alert-info">
+  									<strong>Importante!</strong> Si deseas contactarnos debes iniciar sesión.
 								</div>
-						    <div>
-						    	<span><label>Correo</label></span>
-						    	<span><input name="correoCl" type="text" class="textbox" required></span>
-						    </div>
-						    <div>
-						     	<span><label>Teléfono</label></span>
-						    	<span><input name="telefonoCl" type="text" class="textbox" required></span>
-						    </div>
+							  	<div>
+									<a href="<?=base_url();?>index.php/Usuario/login" class="btn btn-info">iniciar sesión</a>										   
+								</div>
+							<?php }else{ ?>
+					    <form name="formulario" method="post" action="<?=base_url();?>index.php/HotelAlameda/guardarM">
+						<input type="hidden" name="Usuario_idUsuario" value="<?php echo $_SESSION["idUsuario"]; ?>"><br>
 						    <div>
 						    	<span><label>Mensaje</label></span>
-						    	<span required><textarea name="mensaje" > </textarea></span>
+						    	<span><textarea name="mensaje" > </textarea></span>
 						    </div>
 						   <div>
-						   		<span><input type="submit" class="mybutton" value="Enviar"></span>
+						   		<span><input id="btn" onclick="tratamiento()" type="submit" class="mybutton" value="Enviar"></span>
 						  </div>
-					    </form>
+						  <?php } ?>
+					    </form>			
 
 				    </div>
   				</div>				
@@ -120,7 +202,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class="col-md-8 grid_1_of_4 images_1_of_4">
 			<div class="conte">
 				<div class="margen">
-			<h6>Enviado por: <?=$m->correoCl;?></h6>
+			<h6>Enviado por: <?=$m->correoU;?></h6>
 				  <h3><?=$m->mensaje;?></h3>
 				  <h6>Respuesta: <?=$m->respuestaM;?></h6>
 				</div>  
@@ -148,5 +230,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 	</div>
 <!-- footer -->
+<script src="<?=base_url()?>vendor/jquery/jquery.min.js"></script>
+  <script src="<?=base_url()?>vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Menu Toggle Script -->
+  <script>
+    $("#menu-toggle").click(function(e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
+    });
+  </script>
 </body>
 </html>

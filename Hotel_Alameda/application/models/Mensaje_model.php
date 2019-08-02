@@ -1,21 +1,31 @@
 <?php
+
 /**
-    Salvador Toral Naranjo
-    Jueves 18 de julio del 2019
-    Se creo el modelo "Habitacion_model"
-**/
+ * @category   Models
+ * @package    Mensaje_model.php 
+ * @author     Salvador Toral Naranjo
+ * @version    1.0
+ * @link       git@github.com:Salvador280391/Desarrollo_de_Aplicaciones_Web.git
+ * Viernes 02 de Agosto del 2019
+ * 
+ * Se actualizo la cabecera de código
+ */
+
+?>
+<?php
+
 class Mensaje_model extends CI_Model{
 
     private $_idMensaje;
     private $_mensaje;
     private $_fechaM;
     private $_respuestaM;
-    private $_nombreCl;
-    private $_apellidoCl;
-    private $_telefonoCl;
-    private $_correoCl;
-    private $_idCliente;
-    private $_Cliente_idCliente;
+    private $_nombreU;
+    private $_apellidoU;
+    private $_telefonoU;
+    private $_correoU;
+    private $_idUsuario;
+    private $_Usuario_idUsuario;
 
     function __construct(){
 	}
@@ -38,28 +48,28 @@ class Mensaje_model extends CI_Model{
         return $this->_respuestaM;
     }
 
-    function get_nombreCl(){
-        return $this->_nombreCl;
+    function get_nombreU(){
+        return $this->_nombreU;
     }
 
-    function get_apellidoCl(){
-        return $this->_apellidoCl;
+    function get_apellidoU(){
+        return $this->_apellidoU;
     }
 
-    function get_telefonoCl(){
-        return $this->_telefonoCl;
+    function get_telefonoU(){
+        return $this->_telefonoU;
     }
 
-    function get_correoCl(){
-        return $this->_correoCl;
+    function get_correoU(){
+        return $this->_correoU;
     }
 
-    function get_idCliente(){
-        return $this->_idCliente;
+    function get_idUsuario(){
+        return $this->_idUsuario;
     }
 
-    function get_Cliente_idCliente(){
-        return $this->_Cliente_idCliente;
+    function get_Usuario_idUsuario(){
+        return $this->_Usuario_idUsuario;
     }
 
     ///Setters
@@ -80,28 +90,28 @@ class Mensaje_model extends CI_Model{
         $this->_respuestaM = $_respuestaM;
     }
 
-    function set_nombreCl($_nombreCl){
-        $this->_nombreCl = $_nombreCl;
+    function set_nombreU($_nombreU){
+        $this->_nombreU = $_nombreU;
     }
 
-    function set_apellidoCl($_apellidoCl){
-        $this->_apellidoCl = $_apellidoCl;
+    function set_apellidoU($_apellidoU){
+        $this->_apellidoU = $_apellidoU;
     }
 
-    function set_telefonoCl($_telefonoCl){
-        $this->_telefonoCl = $_telefonoCl;
+    function set_telefonoU($_telefonoU){
+        $this->_telefonoU = $_telefonoU;
     }
 
-    function set_correoCl($_correoCl){
-        $this->_correoCl = $_correoCl;
+    function set_correoU($_correoU){
+        $this->_correoU = $_correoU;
     }
 
-    function set_idCliente($_idCliente){
-        $this->_idCliente = $_idCliente;
+    function set_idUsuario($_idUsuario){
+        $this->_idUsuario = $_idUsuario;
     }
 
-    function set_Cliente_idCliente($_Cliente_idCliente){
-        $this->_Cliente_idCliente = $_Cliente_idCliente;
+    function set_Usuario_idUsuario($_Usuario_idUsuario){
+        $this->_Usuario_idUsuario = $_Usuario_idUsuario;
     }
 
     
@@ -110,24 +120,18 @@ class Mensaje_model extends CI_Model{
     public function PublicarM(){
         $this->db->select('*');
         $this->db->from('Mensaje M');
-        $this->db->join('Cliente L', 'M.Cliente_idCliente = L.idCliente');
+        $this->db->join('Usuario U', 'M.Usuario_idUsuario = U.idUsuario');
         $mensaje = $this->db->get();
         return $mensaje->result();
     }
 
     public function guardarM(){
         $data = array(
-            'mensaje' => $this->_mensaje
-        );
-        $data1 = array(
-            'nombreCl' => $this->_nombreCl,
-            'apellidoCl' => $this->_apellidoCl,
-            'telefonoCl' => $this->_telefonoCl,
-            'correoCl' => $this->_correoCl
+            'mensaje' => $this->_mensaje,
+            'Usuario_idUsuario' => $this->_Usuario_idUsuario,
+            "fechaM" => date('Y-m-d')
         );
         $this->db->insert('Mensaje', $data);
-        $this->db->insert('Cliente', $data1);
-
     }
 
     /*public function listarM(){

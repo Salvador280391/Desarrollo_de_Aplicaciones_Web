@@ -1,3 +1,17 @@
+<?php
+
+/**
+ * @category   Views
+ * @package    habitacion.php 
+ * @author     Salvador Toral Naranjo
+ * @version    1.0
+ * @link       git@github.com:Salvador280391/Desarrollo_de_Aplicaciones_Web.git
+ * Viernes 02 de Agosto del 2019
+ * 
+ * Se actualizo la cabecera de código
+ */
+
+?>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -55,13 +69,53 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
   </div>
 <!-- header -->
+<?php if ($this->session->userdata('login')==true) {?>
+<div class="header">
+  <div class="head-1">
+        <div  class="col-md-6 welcome-left">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Usuario
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item"><?php echo $_SESSION["nombreU"]; ?></a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="<?=base_url();?>index.php/Usuario/exitCl">Cerrar Sesión</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+        </div>
+        </div>
+<?php }else{ ?>
+	<div class="header">
+  	<div class="head-1">
+        <div  class="col-md-6 welcome-left">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Usuario
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="<?=base_url();?>index.php/Usuario/login">Iniciar Sesión</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+        </div>
+        </div>
+	<?php } ?>
+</div>
 <div class="about">
 	<div class="container">
 		<div class="clearfix"> </div>
 		<div class="ourteam">
 			<h3>Habitaciones</h3>
 			<div class="section group">
-				<?php
+				<?php if ($this->session->userdata('login')==true) {
 				// "$products" send from "shopping" controller,its stores all product which available in database.
 				foreach ($habitacion as $product) {
 					$id = $product['numHabitacion'];
@@ -71,12 +125,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					$can = $product['cantPersonas'];
 				?>
 					<div class="col-md-3 grid_1_of_4 images_1_of_4">
+					<div>
 						<img src="<?php echo base_url() . 'assets/uploads/files/'.$img ?>"  class="img-habit">	
 						<h3>Habitación <?php echo $id; ?></h3>
 						<p><?php echo $name; ?><br>
 							<?php echo $can; ?> Personas<br>
-							Precio: $<?php echo $price; ?>.00<br>
-			
+							Precio: $<?php echo $price; ?>.00</p><br>
+						</div>
+						<div>
 							<?php
 							echo form_open('HotelAlameda/add');
 							echo form_hidden('id', $id);
@@ -91,9 +147,37 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								);
 								echo form_submit($btn);
 							echo form_close();
-							?></p><br>
+							?>
+							</div>
+							</div>
+				<?php } 
+					  }else{ ?>
+						<div class="alert alert-info">
+  							<strong>Importante!</strong> Si deseas realizar una compra debes iniciar sesión.
 						</div>
-				<?php } ?>
+						<div>
+						<a href="<?=base_url();?>index.php/Usuario/login" class="btn btn-info">iniciar sesión</a>
+						</div><br><br>
+				<?php
+				// "$products" send from "shopping" controller,its stores all product which available in database.
+				foreach ($habitacion as $product) {
+					$id = $product['numHabitacion'];
+					$name = $product['descripcionH'];
+					$price = $product['precio'];
+					$img = $product['imagenH'];
+					$can = $product['cantPersonas'];
+				?>
+					<div class="col-md-3 grid_1_of_4 images_1_of_4">
+						<img src="<?php echo base_url() . 'assets/uploads/files/'.$img ?>"  class="img-habit">	
+						<h3>Habitación <?php echo $id; ?></h3>
+						<p><?php echo $name; ?><br>
+							<?php echo $can; ?> Personas<br>
+							Precio: $<?php echo $price; ?>.00<br><br>							
+							</p><br>
+		
+						</div>
+				<?php } 
+					  } ?>		
 			</div>
 		</div>
     </div>
@@ -115,5 +199,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 	</div>
 <!-- footer -->
+<script src="<?=base_url()?>vendor/jquery/jquery.min.js"></script>
+  <script src="<?=base_url()?>vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Menu Toggle Script -->
+  <script>
+    $("#menu-toggle").click(function(e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
+    });
+  </script>
 </body>
 </html>

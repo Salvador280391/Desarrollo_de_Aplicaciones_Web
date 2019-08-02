@@ -1,3 +1,17 @@
+<?php
+
+/**
+ * @category   Views
+ * @package    nosotros.php 
+ * @author     Salvador Toral Naranjo
+ * @version    1.0
+ * @link       git@github.com:Salvador280391/Desarrollo_de_Aplicaciones_Web.git
+ * Viernes 02 de Agosto del 2019
+ * 
+ * Se actualizo la cabecera de código
+ */
+
+?>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -31,6 +45,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<a href="<?=base_url()?>index.php/HotelAlameda/index"><img src="<?=base_url()?>images/logo.png" class="img-responsive" alt="" /></a>
 				</div>
 				<div class="head-nav">
+
 						<span class="menu"> </span>
 							<ul class="cl-effect-16">
 								<li><a href="<?=base_url()?>index.php/HotelAlameda/index" data-hover="INICIO">INICIO</a></li>
@@ -42,6 +57,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<div class="clearfix"> </div>
 							</ul>
 				</div>
+				
 						<div class="clearfix"> </div>
 					<!-- script-for-nav -->
 					<script>
@@ -52,8 +68,50 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						});
 					</script>
 				<!-- script-for-nav -->
+				
 			</div>
+			<?php if ($this->session->userdata('login')==true) {?>
+<div class="header">
+  <div class="head-1">
+        <div  class="col-md-6 welcome-left">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Usuario
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item"><?php echo $_SESSION["nombreU"]; ?></a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="<?=base_url();?>index.php/Usuario/exitCl">Cerrar Sesión</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+        </div>
+        </div>
+<?php }else{ ?>
+	<div class="header">
+  	<div class="head-1">
+        <div  class="col-md-6 welcome-left">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Usuario
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="<?=base_url();?>index.php/Usuario/login">Iniciar Sesión</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+        </div>
+        </div>
+	<?php } ?>
 		</div>
+		
+  </div>
   </div>
 <!-- header -->
 <!-- welcome -->
@@ -144,5 +202,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 	</div>
 <!-- footer -->
+<script src="<?=base_url()?>vendor/jquery/jquery.min.js"></script>
+  <script src="<?=base_url()?>vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Menu Toggle Script -->
+  <script>
+    $("#menu-toggle").click(function(e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
+    });
+  </script>
 </body>
 </html>
