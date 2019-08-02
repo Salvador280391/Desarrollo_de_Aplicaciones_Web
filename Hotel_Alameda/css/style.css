@@ -11,6 +11,10 @@ body {
   font-family: 'Open Sans', sans-serif;
   }
 /*--- slider-css --*/
+
+.head-1{
+	float:right;
+}
 .img-habit{
 	width: 300px;
 	height: 200px;

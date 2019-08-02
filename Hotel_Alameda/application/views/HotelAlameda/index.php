@@ -1,11 +1,17 @@
-<!--
-	Salvador Toral Naranjo 
-	lunes 08 de julio del 2019
-----Se agregarón 2 imagenes más a la area del carrusel---
-----El área de noticias se modifico ahora las noticias se mostraran de manera dinamica, obteniendo 
-	la informacion que se muestra directamente de la base de datos---
- -->
+<?php
 
+/**
+ * @category   Views
+ * @package    index.php 
+ * @author     Salvador Toral Naranjo
+ * @version    1.0
+ * @link       git@github.com:Salvador280391/Desarrollo_de_Aplicaciones_Web.git
+ * Viernes 02 de Agosto del 2019
+ * 
+ * Se actualizo la cabecera de código
+ */
+
+?>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -32,6 +38,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   </script>
 </head>
 <body>
+
 
 		<div class="header">
 				<div class="logo">
@@ -61,7 +68,47 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<!-- script-for-nav -->
 			</div>
 
+			<?php if ($this->session->userdata('login')==true) {?>
+<div class="header">
+  <div class="head-1">
+        <div  class="col-md-6 welcome-left">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Usuario
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item"><?php echo $_SESSION["nombreU"]; ?></a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="<?=base_url();?>index.php/Usuario/exitCl">Cerrar Sesión</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+        </div>
+        </div>
+<?php }else{ ?>
+	<div class="header">
+  	<div class="head-1">
+        <div  class="col-md-6 welcome-left">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Usuario
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="<?=base_url();?>index.php/Usuario/login">Iniciar Sesión</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+        </div>
+        </div>
+	<?php } ?>
 
+	</div>
 <!-- header -->
 <div class="banner">
 	<div class="callbacks_container">
@@ -86,6 +133,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	  
   </div>
 <!-- header -->
+
 
 <!-- welcome -->
 	<div class="welcome">
@@ -122,7 +170,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<input type="hidden" name="idNoticia" value="<?=$n->idNoticia;?>">	
 								<li>
 									<div class="vero-top">
-										<h2><font size=20 color="white"><?=$n->titulo;?></font><br></h2>
+										<div>
+										<h2><font color="white"><?=$n->titulo;?></font><br></h2>
+										</div>
 										<div class="col-md-6 vero-1">
 											<p><?=$n->noticia;?></p>
 										</div>
@@ -132,7 +182,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										</div>
 										<div class="clearfix"> </div>
 										<div class="button-1">
-												<a class="read-more" href="#">Leer maś</a>
+												<a class="read-more" href="https://www.facebook.com/HotelAlamedaMaravatio/">Maś</a>
 										</div>
 								<?php endforeach;?>
 							</ul>
@@ -234,6 +284,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   <!-- Material Dashboard DEMO methods, don't include it in your project! -->
   <script src="<?=base_url()?>assets/demo/demo.js"></script>
 
+  <script src="<?=base_url()?>vendor/jquery/jquery.min.js"></script>
+  <script src="<?=base_url()?>vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Menu Toggle Script -->
+  <script>
+    $("#menu-toggle").click(function(e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
+    });
+  </script>
 </body>
 
 </html>

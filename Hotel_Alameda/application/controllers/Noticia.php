@@ -1,3 +1,17 @@
+<?php
+
+/**
+ * @category   Controllers
+ * @package    Noticia.php
+ * @author     Salvador Toral Naranjo
+ * @version    1.0
+ * @link       git@github.com:Salvador280391/Desarrollo_de_Aplicaciones_Web.git
+ * Viernes 02 de Agosto del 2019
+ * 
+ * Se actualizo la cabecera de código
+ */
+
+?>
 <?php 
 
 class Noticia extends CI_Controller
@@ -24,7 +38,9 @@ class Noticia extends CI_Controller
 
               //$crud
               $output = $crud->render();
-              $this->load->view('noticia.php',(array)$output);
+              $this->load->view('Administrador/head.php');
+              $this->load->view('Administrador/noticia.php',(array)$output);
+              $this->load->view('Administrador/footer.php');
           }catch(Exception $ex){
             show_error($ex->getMessage().' ----- '.$ex->getTraceAsString());
         }

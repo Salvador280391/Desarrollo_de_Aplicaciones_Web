@@ -1,3 +1,17 @@
+<?php
+
+/**
+ * @category   Controllers
+ * @package    Reservacion.php
+ * @author     Salvador Toral Naranjo
+ * @version    1.0
+ * @link       git@github.com:Salvador280391/Desarrollo_de_Aplicaciones_Web.git
+ * Viernes 02 de Agosto del 2019
+ * 
+ * Se actualizo la cabecera de código
+ */
+
+?>
 <?php 
 
 class Reservacion extends CI_Controller
@@ -14,20 +28,22 @@ class Reservacion extends CI_Controller
               $crud->set_theme('bootstrap-v4');
               $crud->set_table('Reservacion');
               $crud->set_subject('Reservación');
-              $crud->columns('fechaLlegada','fechaSalida','Cliente_idCliente');
+              $crud->columns('Usuario_idUsuario','fechaLlegada','fechaSalida');
               $crud->required_fields('fechaLlegada','fechaSalida');
               $crud->display_as('fechaLlegada','Fecha de llegada');
               $crud->display_as('fechaSalida','Fecha de salida');
+              $crud->display_as('Usuario_idUsuario','Datos del Cliente');
 
-              $crud->set_relation("Cliente_idCliente","Cliente","nombreCl");
-              $crud->display_as("Cliente_idCliente","Cliente");
-
-
+              $crud->set_relation('Usuario_idUsuario','Usuario','{nombreU}  {apellidoU}');        
+              
               //$crud
               $output = $crud->render();
-              $this->load->view('reservacion.php',(array)$output);
+              $this->load->view('Administrador/head.php');
+              $this->load->view('Administrador/reservacion.php',(array)$output);
+              $this->load->view('Administrador/footer.php');
           }catch(Exception $ex){
             show_error($ex->getMessage().' ----- '.$ex->getTraceAsString());
         }
       }
+    
 }
